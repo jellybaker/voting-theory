@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An interactive demo exploring flaws in voting systems and Arrow's Impossibility Theorem, using food candidates and 100 simulated voters.">
+  <title>Rig the Vote! — Voting Theory Demo</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗳️</text></svg>">
+</head>
+<body>
+  <div class="app-container" id="app">
+
+    <!-- ===== Header ===== -->
+    <header class="header">
+      <h1 class="header__title">Rig the Vote! 🗳️</h1>
+      <p class="header__subtitle">
+        Can any voting system be truly fair? Step through 4 systems and watch a rigger exploit every one.
+      </p>
+    </header>
+
+    <!-- ===== Candidate Cards ===== -->
+    <section class="candidates-section" id="candidates-section">
+      <div class="section-label"><span class="icon">🍽️</span> The Candidates</div>
+      <div class="candidate-grid" id="candidate-grid">
+        <!-- Filled by JS -->
+      </div>
+    </section>
+
+    <!-- ===== Voter Stats ===== -->
+    <section id="voter-stats-section" class="hidden">
+      <div class="section-label"><span class="icon">👥</span> 100 Voters — First Choice Distribution</div>
+      <div class="voter-stats" id="voter-stats">
+        <!-- Filled by JS -->
+      </div>
+    </section>
+
+    <!-- ===== Step Progress Bar ===== -->
+    <div class="steps-bar" id="steps-bar">
+      <!-- Filled by JS -->
+    </div>
+
+    <!-- ===== Controls ===== -->
+    <div class="controls-bar" id="controls-bar">
+      <div class="control-group">
+        <span class="control-label">Rigger Strength</span>
+        <input type="range" class="strength-slider" id="strength-slider" min="0" max="50" value="20">
+        <span class="strength-value" id="strength-value">20</span>
+      </div>
+      <div class="controls-spacer"></div>
+      <button class="btn btn--primary" id="btn-start" onclick="startDemo()">
+        ▶ Start Demo
+      </button>
+      <button class="btn btn--primary hidden" id="btn-honest" onclick="runHonest()">
+        ✅ Run Honest Election
+      </button>
+      <button class="btn btn--danger hidden" id="btn-rig" onclick="runRigged()">
+        💀 Rig It!
+      </button>
+      <button class="btn btn--ghost hidden" id="btn-next" onclick="nextRound()">
+        ➡ Next Round
+      </button>
+      <button class="btn btn--ghost hidden" id="btn-restart" onclick="restartDemo()">
+        🔄 Restart
+      </button>
+    </div>
+
+    <!-- ===== Narrative Panel ===== -->
+    <section class="narrative-section">
+      <div class="glass-panel narrative-panel" id="narrative-panel">
+        <!-- Intro screen shown initially -->
+        <div class="intro-screen" id="intro-screen">
+          <div class="intro-emoji">🗳️</div>
+          <div class="intro-title">Welcome to the Election!</div>
+          <div class="intro-desc">
+            100 voters are choosing their favorite dish. <strong>Margherita Pizza</strong> is the crowd favorite 🍕 —
+            but a sneaky rigger wants <strong>Sushi Roll</strong> 🍣 to win.<br><br>
+            Can they exploit the voting system? Let's find out!
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="voting_systems.js"></script>
+  <script src="rigger.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
